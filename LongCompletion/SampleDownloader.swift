@@ -53,7 +53,7 @@ class SampleDownloader: NSObject {
 extension SampleDownloader: NSURLSessionDelegate, NSURLSessionDownloadDelegate {
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        UILocalNotification.debugMessage("Finished \(downloadTask)", downloader: self)
+        UILocalNotification.debugMessage("Finished \(downloadTask.currentRequest!.URL!.lastPathComponent)", downloader: self)
         
         _ = try? NSFileManager.defaultManager().moveItemAtPath(location.path!, toPath: downloadedPath)
 
